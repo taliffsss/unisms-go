@@ -288,6 +288,12 @@ Summary of the public surface:
 See [CONTRIBUTING.md](CONTRIBUTING.md). Note that this SDK's scope is
 intentionally limited to mirror the PHP reference implementation.
 
+## Publishing
+
+Maintainers: see [PUBLISHING.md](PUBLISHING.md) for the release process
+(tagging conventions, the automated GitHub Actions release workflow, major
+version path changes, and how to retract a bad release).
+
 ## License
 
 The MIT License (MIT). See [LICENSE](LICENSE) for details.
