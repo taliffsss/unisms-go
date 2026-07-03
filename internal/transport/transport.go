@@ -8,6 +8,7 @@ package transport
 import (
 	"bytes"
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -155,7 +156,7 @@ func (e *Executor) doOnce(ctx context.Context, req Request) (*Result, error) {
 	if err != nil {
 		return nil, &Error{Kind: FailureNetwork, Message: "request failed", Cause: err}
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -178,7 +179,7 @@ func (e *Executor) doOnce(ctx context.Context, req Request) (*Result, error) {
 // HTTP 5xx. Other 4xx API errors are not retried.
 func isRetryable(err error) bool {
 	var tErr *Error
-	if !asTransportError(err, &tErr) {
+	if !errors.As(err, &tErr) {
 		return false
 	}
 
@@ -190,15 +191,4 @@ func isRetryable(err error) bool {
 	default:
 		return false
 	}
-}
-
-// asTransportError is a tiny local errors.As to avoid importing errors
-// just for this one assertion (kept explicit for clarity/testability).
-func asTransportError(err error, target **Error) bool {
-	e, ok := err.(*Error)
-	if !ok {
-		return false
-	}
-	*target = e
-	return true
 }

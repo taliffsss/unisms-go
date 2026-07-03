@@ -1,38 +1,42 @@
+version: "2"
+
 run:
   timeout: 5m
 
 linters:
-  disable-all: true
+  default: none
   enable:
     - errcheck
-    - gosimple
     - govet
     - ineffassign
     - staticcheck
     - unused
-    - gofmt
-    - goimports
     - misspell
     - unconvert
     - unparam
     - bodyclose
     - noctx
     - errorlint
+  settings:
+    errorlint:
+      errorf: true
+      asserts: true
+      comparison: true
+    govet:
+      enable:
+        - shadow
+  exclusions:
+    rules:
+      - path: _test\.go
+        linters:
+          - unparam
+          - noctx
 
-linters-settings:
-  errorlint:
-    errorf: true
-    asserts: true
-    comparison: true
-  govet:
-    enable:
-      - shadow
+formatters:
+  enable:
+    - gofmt
+    - goimports
 
 issues:
-  exclude-rules:
-    - path: _test\.go
-      linters:
-        - unparam
-        - noctx
   max-issues-per-linter: 0
   max-same-issues: 0

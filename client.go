@@ -34,6 +34,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/url"
 	"strings"
@@ -178,8 +179,8 @@ func decodeResponse(body []byte) (Response, error) {
 // translateError converts an internal/transport.Error into the exported
 // error hierarchy (TransportError or APIError).
 func translateError(err error) error {
-	tErr, ok := err.(*transport.Error)
-	if !ok {
+	var tErr *transport.Error
+	if !errors.As(err, &tErr) {
 		return newTransportError("request failed", err)
 	}
 

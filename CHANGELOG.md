@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Migrated `.golangci.yml` to the golangci-lint v2 configuration schema
+  (`version: "2"`, `linters.default: none`, `formatters` section for
+  `gofmt`/`goimports`) since GitHub Actions now installs golangci-lint
+  v2 by default; `gosimple` was dropped as its checks are now included
+  in `staticcheck` under v2.
+- Bumped `actions/checkout`, `actions/setup-go`, `golangci-lint-action`,
+  and `softprops/action-gh-release` to their latest majors (all now run
+  on the Node 24 Actions runtime, resolving the Node 20 deprecation
+  warning).
+- Replaced a hand-rolled `errors.As` reimplementation with the stdlib
+  version, and explicitly discarded `resp.Body.Close()`'s error —
+  fixes surfaced by actually running golangci-lint v2 for the first
+  time (it was not installed/exercised locally before this).
+
 ## [0.1.0] - 2026-07-03
 
 ### Added
