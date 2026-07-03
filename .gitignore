@@ -1,0 +1,15 @@
+# Compiled binaries
+/unisms-go
+*.exe
+*.test
+*.out
+
+# Go build/test cache artifacts if vendored locally
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
