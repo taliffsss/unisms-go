@@ -1,5 +1,7 @@
 # Compiled binaries
 /unisms-go
+/send-test
+/examples/send-test/send-test
 *.exe
 *.test
 *.out
