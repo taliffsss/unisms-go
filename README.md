@@ -1,12 +1,13 @@
 # unisms-go
 
-Official Go SDK for the [UniSMS API](https://unismsapi.com) — a powerful,
+Community Go SDK for the [UniSMS API](https://unismsapi.com) — a powerful,
 reliable, and developer-friendly SMS API for the Philippines, supporting
 all major carriers (Globe, Smart, DITO, Sun, TNT).
 
-This is a Go port of the [`taliffsss/unisms-php`](https://github.com/taliffsss/unisms-php)
-reference implementation, scoped to the same two operations: sending an
-SMS and checking a message's delivery status.
+This is a community-maintained library for the UniSMS API, created to
+simplify integration for Go developers. It provides a clean, idiomatic
+interface scoped to two operations: sending an SMS and checking a
+message's delivery status.
 
 Current version: **v0.1.0** (see [CHANGELOG.md](CHANGELOG.md)).
 
@@ -286,7 +287,8 @@ Summary of the public surface:
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Note that this SDK's scope is
-intentionally limited to mirror the PHP reference implementation.
+intentionally limited to the two operations the UniSMS API exposes for
+sending and status checks.
 
 ## Publishing
 
